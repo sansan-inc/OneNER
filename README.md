@@ -1,3 +1,3 @@
 # OneNER
 
-Named Entity Recognition
+A BERT-based Named Entity Recognition.
