@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+examples/crf_dataset/
+examples/crf_output/
+examples/dataset/
+examples/output/
