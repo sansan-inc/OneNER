@@ -55,8 +55,20 @@ $ bash train_crf.sh
 ### Prediction
 
 ```sh
->>> from onener.transformer.ner import BertNERTagger
->>> tagger = BertNERTagger("/path/to/crf_output")
->>> tagger.predict("Sansan株式会社が提供する名刺管理サービスです。")
-[[{'word': 'Sans', 'score': 0.9207938313484192, 'entity': 'B-ORGANIZATION', 'index': 1}, {'word': 'an', 'score': 0.9845695495605469, 'entity': 'I-ORGANIZATION', 'index': 2}, {'word': '株', 'score': 0.9861224889755249, 'entity': 'I-ORGANIZATION', 'index': 3}, {'word': '式', 'score': 0.9906498789787292, 'entity': 'I-ORGANIZATION', 'index': 4}, {'word': '会', 'score': 0.9887092113494873, 'entity': 'I-ORGANIZATION', 'index': 5}, {'word': '社', 'score': 0.9893214106559753, 'entity': 'I-ORGANIZATION', 'index': 6}, {'word': 'が', 'score': 0.9982619285583496, 'entity': 'O', 'index': 7}, {'word': '提', 'score': 0.9966153502464294, 'entity': 'O', 'index': 8}, {'word': '供', 'score': 0.9975463151931763, 'entity': 'O', 'index': 9}, {'word': 'する', 'score': 0.9980711340904236, 'entity': 'O', 'index': 10}, {'word': '名', 'score': 0.9884718060493469, 'entity': 'O', 'index': 11}, {'word': '刺', 'score': 0.9883087873458862, 'entity': 'O', 'index': 12}, {'word': '管', 'score': 0.9875956177711487, 'entity': 'O', 'index': 13}, {'word': '理', 'score': 0.9814469218254089, 'entity': 'O', 'index': 14}, {'word': 'サービス', 'score': 0.9934806227684021, 'entity': 'O', 'index': 15}, {'word': 'で', 'score': 0.9978121519088745, 'entity': 'O', 'index': 16}, {'word': 'す', 'score': 0.9976488351821899, 'entity': 'O', 'index': 17}, {'word': '。', 'score': 0.9979578256607056, 'entity': 'O', 'index': 18}]]
+In [1]: from onener.transformer.ner import BertCrfNERTagger
+
+In [2]: tagger = BertCrfNERTagger("examples/crf_output") # set model directory path
+
+In [3]: tagger.predict("Sansan株式会社が提供する名刺管理サービスです。")
+Out[3]:
+[[{'word': 'Sansan', 'score': 0.91733717918396, 'entity': 'B-組織名', 'index': 1},
+  {'word': '株式会社', 'score': 0.9866153001785278, 'entity': 'I-組織名', 'index': 2},
+  {'word': 'が', 'score': 0.9982038736343384, 'entity': 'O', 'index': 3},
+  {'word': '提供', 'score': 0.9965072274208069, 'entity': 'O', 'index': 4},
+  {'word': 'する', 'score': 0.9980195760726929, 'entity': 'O', 'index': 5},
+  {'word': '名刺', 'score': 0.9890339374542236, 'entity': 'O', 'index': 6},
+  {'word': '管理', 'score': 0.9876256585121155, 'entity': 'O', 'index': 7},
+  {'word': 'サービス', 'score': 0.9932954907417297, 'entity': 'O', 'index': 8},
+  {'word': 'です', 'score': 0.997816801071167, 'entity': 'O', 'index': 9},
+  {'word': '。', 'score': 0.9979799389839172, 'entity': 'O', 'index': 10}]]
 ```
